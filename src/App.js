@@ -57,6 +57,7 @@ function App() {
           value={resource}
           onChange={(e) => {
             setResource(e.target.value);
+            setCurrentPage(1);
           }}
         >
           <option value="posts">posts</option>
