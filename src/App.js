@@ -8,18 +8,18 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [resource, setResource] = useState("posts");
   const [totalPages, setTotalPages] = useState(1);
+  const [checkInput, setCheckInput] = useState(false);
 
   useEffect(() => {
     Axios.get(`https://jsonplaceholder.typicode.com/${resource}`, {
       params: {
-        _start: (currentPage - 1) * 20, // Start ID
-        _limit: 20, // End ID
+        _start: (currentPage - 1) * 20, // Start ID for a page
+        _limit: 20, // Limit data to 20 rows per page
       },
     })
       .then((response) => {
         setPageItems(response.data);
         setDataKeys(Object.keys(response.data[0]));
-        console.log(response.data, Object.keys(response.data[0]));
       })
       .catch((error) => {
         console.error(error);
@@ -111,7 +111,10 @@ function App() {
                         className="arrow-left"
                         alt="turn page left"
                         src={process.env.PUBLIC_URL + "/page-left.png"}
-                        onClick={() => setCurrentPage(currentPage - 1)}
+                        onClick={() => {
+                          setCurrentPage(currentPage - 1);
+                          setCheckInput(false);
+                        }}
                       />
                     ) : (
                       ""
@@ -120,10 +123,19 @@ function App() {
                   <td className="page-indicator">
                     <input
                       type="number"
+                      placeholder={currentPage}
                       className="current-page-input"
                       max={totalPages}
-                      value={currentPage}
-                      onChange={(e) => setCurrentPage(parseInt(e.target.value))}
+                      value={checkInput ? "" : currentPage}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        if (value === "") {
+                          setCheckInput(true);
+                        } else if (value >= 1 && value <= totalPages) {
+                          setCurrentPage(parseInt(value, 10));
+                          setCheckInput(false);
+                        }
+                      }}
                     />{" "}
                     / {totalPages}
                   </td>
@@ -133,7 +145,10 @@ function App() {
                         className="arrow-right"
                         alt="turn page right"
                         src={process.env.PUBLIC_URL + "/page-right.png"}
-                        onClick={() => setCurrentPage(currentPage + 1)}
+                        onClick={() => {
+                          setCurrentPage(currentPage + 1);
+                          setCheckInput(false);
+                        }}
                       />
                     ) : (
                       ""

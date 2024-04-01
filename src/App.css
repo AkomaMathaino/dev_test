@@ -58,9 +58,11 @@ tr:nth-child(even) {
 }
 
 .arrow-left:hover {
+  cursor: pointer;
   content: url("../public/page-left-hovered.png");
 }
 
 .arrow-right:hover {
+  cursor: pointer;
   content: url("../public/page-right-hovered.png");
 }
