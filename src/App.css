@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+.align-left {
+  text-align: left;
+}
+
+h1 {
+  margin: 0.25em 0;
+}
+
 .table-container {
   display: flex;
   justify-content: center;
@@ -32,7 +40,7 @@ tr:nth-child(even) {
 }
 
 .current-page-input {
-  width: 2.5em;
+  width: 3em;
 }
 
 .arrow-box {

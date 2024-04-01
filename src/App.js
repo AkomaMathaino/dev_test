@@ -43,7 +43,7 @@ function App() {
           setTotalPages(10);
           break;
         default:
-          break;
+          setTotalPages(1);
       }
     };
 
@@ -52,7 +52,22 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Posts</h1>
+      <div className="align-left">
+        <select
+          value={resource}
+          onChange={(e) => {
+            setResource(e.target.value);
+          }}
+        >
+          <option value="posts">posts</option>
+          <option value="comments">comments</option>
+          <option value="albums">albums</option>
+          <option value="photos">photos</option>
+          <option value="todos">todos</option>
+          <option value="users">users</option>
+        </select>
+      </div>
+      <h1>{resource}</h1>
       <div className="table-container">
         {pageItems.length >= 1 ? (
           <div>
@@ -67,9 +82,22 @@ function App() {
               <tbody>
                 {pageItems.map((item) => (
                   <tr key={item.id}>
-                    {dataKeys.map((key) => (
-                      <td key={`${item.id}-${key}`}>{item[key]}</td>
-                    ))}
+                    {dataKeys.map((key) =>
+                      String(item[key]).slice(0, 4) === "http" ? (
+                        <td key={`${item.id}-${key}`}>
+                          <img alt="key" src={item[key]} />
+                        </td>
+                      ) : (
+                        <td key={`${item.id}-${key}`}>
+                          {typeof item[key] === "boolean"
+                            ? String(item[key])
+                            : typeof item[key] === "object" &&
+                              item[key] !== null
+                            ? JSON.stringify(item[key])
+                            : item[key]}
+                        </td>
+                      )
+                    )}
                   </tr>
                 ))}
               </tbody>
@@ -81,6 +109,7 @@ function App() {
                     {currentPage > 1 ? (
                       <img
                         className="arrow-left"
+                        alt="turn page left"
                         src={process.env.PUBLIC_URL + "/page-left.png"}
                         onClick={() => setCurrentPage(currentPage - 1)}
                       />
@@ -102,6 +131,7 @@ function App() {
                     {currentPage < totalPages ? (
                       <img
                         className="arrow-right"
+                        alt="turn page right"
                         src={process.env.PUBLIC_URL + "/page-right.png"}
                         onClick={() => setCurrentPage(currentPage + 1)}
                       />
