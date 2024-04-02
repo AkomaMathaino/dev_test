@@ -2,8 +2,35 @@
   text-align: center;
 }
 
-.align-left {
-  text-align: left;
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.select {
+  height: 2em;
+}
+
+.question-mark {
+  height: 3em;
+  width: 3em;
+}
+
+.question-mark:hover {
+  content: url("../public/question-mark-hovered.png");
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  top: 1.5em;
+  right: 3.5em;
+  background-color: #d6eeee;
+  padding: 0.25em;
 }
 
 h1 {

@@ -9,6 +9,7 @@ function App() {
   const [resource, setResource] = useState("posts");
   const [totalPages, setTotalPages] = useState(1);
   const [checkInput, setCheckInput] = useState(false);
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   useEffect(() => {
     Axios.get(`https://jsonplaceholder.typicode.com/${resource}`, {
@@ -52,21 +53,49 @@ function App() {
 
   return (
     <div className="App">
-      <div className="align-left">
-        <select
-          value={resource}
-          onChange={(e) => {
-            setResource(e.target.value);
-            setCurrentPage(1);
-          }}
-        >
-          <option value="posts">posts</option>
-          <option value="comments">comments</option>
-          <option value="albums">albums</option>
-          <option value="photos">photos</option>
-          <option value="todos">todos</option>
-          <option value="users">users</option>
-        </select>
+      <div className="flex space-between">
+        <div className="flex">
+          <h3>Select Resource:&nbsp;</h3>
+          <select
+            value={resource}
+            className="select"
+            onChange={(e) => {
+              setResource(e.target.value);
+              setCurrentPage(1);
+            }}
+          >
+            <option value="posts">posts</option>
+            <option value="comments">comments</option>
+            <option value="albums">albums</option>
+            <option value="photos">photos</option>
+            <option value="todos">todos</option>
+            <option value="users">users</option>
+          </select>
+        </div>
+        <div>
+          <img
+            src={process.env.PUBLIC_URL + "/question-mark.png"}
+            className="question-mark"
+            alt="explanation"
+            onMouseOver={() => {
+              setIsTooltipVisible(true);
+            }}
+            onMouseOut={() => {
+              setIsTooltipVisible(false);
+            }}
+          />
+          {isTooltipVisible && (
+            <div>
+              <p className="tooltip">
+                This app was developed using React to paginate through lists of
+                mock JSON data retrieved from the API
+                https://jsonplaceholder.typicode.com/ according to the
+                instructions outlined in the docx file located at
+                https://github.com/AkomaMathaino/dev_test/Developer Test.docx
+              </p>
+            </div>
+          )}
+        </div>
       </div>
       <h1>{resource}</h1>
       <div className="table-container">
