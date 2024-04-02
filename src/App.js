@@ -11,15 +11,18 @@ function App() {
   const [checkInput, setCheckInput] = useState(false);
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
+  // Retrieves data for current page depending on the resource
   useEffect(() => {
     Axios.get(`https://jsonplaceholder.typicode.com/${resource}`, {
       params: {
         _start: (currentPage - 1) * 20, // Start ID for a page
-        _limit: 20, // Limit data to 20 rows per page
+        _limit: resource === "photos" ? 10 : 20, // Limit data to 10 rows per page for photos and 20 for the rest
       },
     })
       .then((response) => {
+        // Sets data for current page
         setPageItems(response.data);
+        // Retrieves the keys from data object
         setDataKeys(Object.keys(response.data[0]));
       })
       .catch((error) => {
@@ -27,6 +30,7 @@ function App() {
       });
   }, [currentPage, resource]);
 
+  // Calculates total pages depending on the resource
   useEffect(() => {
     const calculateTotalPages = () => {
       switch (resource) {
@@ -53,8 +57,9 @@ function App() {
 
   return (
     <div className="App">
-      <div className="flex space-between">
+      <div className="flex space-between header">
         <div className="flex">
+          {/* Allows users to select the resource data */}
           <h3>Select Resource:&nbsp;</h3>
           <select
             value={resource}
@@ -73,6 +78,7 @@ function App() {
           </select>
         </div>
         <div>
+          {/* Gives users context of project */}
           <img
             src={process.env.PUBLIC_URL + "/question-mark.png"}
             className="question-mark"
@@ -113,10 +119,12 @@ function App() {
         </div>
       </div>
       <h1>{resource}</h1>
-      <div className="table-container">
+      <div>
+        {/* Creates a table if there is data to be displayed */}
         {pageItems.length >= 1 ? (
-          <div>
+          <div className="table-container">
             <table className="data-table">
+              {/* Adds a header row to inform what data is in each column */}
               <thead>
                 <tr>
                   {dataKeys.map((key) => (
@@ -125,6 +133,7 @@ function App() {
                 </tr>
               </thead>
               <tbody>
+                {/* Displays the data in each row according to data type using the keys retrieved */}
                 {pageItems.map((item) => (
                   <tr key={item.id}>
                     {dataKeys.map((key) =>
@@ -147,9 +156,11 @@ function App() {
                 ))}
               </tbody>
             </table>
+            {/* Creates a separate table for users to navigate pages */}
             <table className="paginator-table">
               <tfoot>
                 <tr>
+                  {/* Allows users to go to previous pages if not on the first page */}
                   <td className="arrow-box">
                     {currentPage > 1 ? (
                       <img
@@ -165,6 +176,7 @@ function App() {
                       ""
                     )}
                   </td>
+                  {/* Allows users to go to a specific page, keep track of the current page, and how many there are */}
                   <td className="page-indicator">
                     <input
                       type="number"
@@ -184,6 +196,7 @@ function App() {
                     />{" "}
                     / {totalPages}
                   </td>
+                  {/* Allows users to go to next page if not on the last page */}
                   <td className="arrow-box">
                     {currentPage < totalPages ? (
                       <img
