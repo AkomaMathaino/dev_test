@@ -31,6 +31,13 @@
   right: 3.5em;
   background-color: #d6eeee;
   padding: 0.25em;
+  width: 20em;
+  text-align: left;
+}
+
+.link {
+  text-decoration: none;
+  color: blue;
 }
 
 h1 {

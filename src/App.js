@@ -86,12 +86,26 @@ function App() {
           />
           {isTooltipVisible && (
             <div>
-              <p className="tooltip">
-                This app was developed using React to paginate through lists of
-                mock JSON data retrieved from the API
-                https://jsonplaceholder.typicode.com/ according to the
-                instructions outlined in the docx file located at
-                https://github.com/AkomaMathaino/dev_test/Developer Test.docx
+              <p
+                className="tooltip"
+                onMouseOver={() => {
+                  setIsTooltipVisible(true);
+                }}
+                onMouseOut={() => {
+                  setIsTooltipVisible(false);
+                }}
+              >
+                This app uses React to paginate through lists of mock JSON data
+                fetched from the API https://jsonplaceholder.typicode.com/. The
+                development process followed the instructions provided in the
+                document located{" "}
+                <a
+                  className="link"
+                  href="https://github.com/AkomaMathaino/dev_test/blob/main/Developer%20Test.docx"
+                >
+                  here
+                </a>
+                .
               </p>
             </div>
           )}
