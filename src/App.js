@@ -32,7 +32,7 @@ function App() {
 
   // Sets total pages depending on the resource
   useEffect(() => {
-    const setTotalPages = () => {
+    const determineTotalPages = () => {
       switch (resource) {
         case "posts":
         case "albums":
@@ -52,7 +52,7 @@ function App() {
       }
     };
 
-    setTotalPages();
+    determineTotalPages();
   }, [resource]);
 
   return (
