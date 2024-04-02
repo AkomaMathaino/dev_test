@@ -16,7 +16,7 @@ function App() {
     Axios.get(`https://jsonplaceholder.typicode.com/${resource}`, {
       params: {
         _start: (currentPage - 1) * 20, // Start ID for a page
-        _limit: resource === "photos" ? 10 : 20, // Limit data to 10 rows per page for photos and 20 for the rest
+        _limit: 20, // Limit data to 20 rows per page
       },
     })
       .then((response) => {
@@ -36,16 +36,16 @@ function App() {
       switch (resource) {
         case "posts":
         case "albums":
-          setTotalPages(5);
+          setTotalPages(Math.ceil(100 / 20));
           break;
         case "comments":
-          setTotalPages(25);
+          setTotalPages(Math.ceil(500 / 20));
           break;
         case "photos":
-          setTotalPages(250);
+          setTotalPages(Math.ceil(5000 / 20));
           break;
         case "todos":
-          setTotalPages(10);
+          setTotalPages(Math.ceil(200 / 20));
           break;
         default:
           setTotalPages(1);

@@ -54,7 +54,7 @@ h3 {
 }
 
 h1 {
-  margin: 0 0 0.75em 0;
+  margin: 0.2em 0;
 }
 
 .table-container {
@@ -68,8 +68,17 @@ h1 {
   width: 100%;
 }
 
+.data-table {
+  margin: 1.5em 0 3.5em 0;
+}
+
 .paginator-table {
   margin-top: 0.2em;
+  position: fixed;
+  bottom: 0;
+  background-color: #d6eeee;
+  width: 100%;
+  left: 0;
 }
 
 tr:nth-child(even) {
