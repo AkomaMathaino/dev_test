@@ -14,7 +14,7 @@ To test this React app on your computer, you will need to have Node.js and npm i
 
 2. Navigate to the project directory:
 
-`cd your-repo`
+`cd dev_test`
 
 3. Install dependencies using npm:
 
