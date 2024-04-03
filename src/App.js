@@ -109,6 +109,7 @@ function App() {
                   className="link"
                   target="_blank"
                   href="https://github.com/AkomaMathaino/dev_test/blob/main/Developer%20Test.docx"
+                  rel="noreferrer"
                 >
                   here
                 </a>
