@@ -4,7 +4,7 @@ This app uses React to paginate through lists of mock JSON data fetched from the
 
 ## Getting Started
 
-To test this React app on your computer, you will need to have Node.js and npm installed. If you don't have them installed, you can download and install Node.js from https://nodejs.org/.
+To test this React app on your computer, you will need to have Node.js and npm installed. If you don't have them installed, you can download and install Node.js from https://[nodejs.org/](https://nodejs.org/en/download).
 
 ## Installation
 
