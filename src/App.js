@@ -118,13 +118,13 @@ function App() {
           )}
         </div>
       </div>
-      <h1>{resource}</h1>
-      <div>
+      <div className="body">
+        <h1>{resource.charAt(0).toUpperCase() + resource.slice(1)}</h1>
         {/* Creates a table if there is data to be displayed */}
         {pageItems.length >= 1 ? (
           <div className="table-container">
             <table className="data-table">
-              {/* Adds a header row to inform what data is in each column */}
+              {/* Adds a header row to inform what the data in each column is */}
               <thead>
                 <tr>
                   {dataKeys.map((key) => (
@@ -160,7 +160,7 @@ function App() {
             <table className="paginator-table">
               <tfoot>
                 <tr>
-                  {/* Allows users to go to previous pages if not on the first page */}
+                  {/* Allows users to go to previous pages if not on the first one*/}
                   <td className="arrow-box">
                     {currentPage > 1 ? (
                       <img
@@ -176,7 +176,7 @@ function App() {
                       ""
                     )}
                   </td>
-                  {/* Allows users to go to a specific page, keep track of the current page, and how many there are */}
+                  {/* Allows users to go to a specific page and keep track of the current page relative to the total*/}
                   <td className="page-indicator">
                     <input
                       type="number"
@@ -196,7 +196,7 @@ function App() {
                     />{" "}
                     / {totalPages}
                   </td>
-                  {/* Allows users to go to next page if not on the last page */}
+                  {/* Allows users to go to next page if not on the last one */}
                   <td className="arrow-box">
                     {currentPage < totalPages ? (
                       <img

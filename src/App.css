@@ -18,6 +18,8 @@ body {
 .header {
   position: absolute;
   width: calc(100% - 1em);
+  height: 3em;
+  padding: 0.1em 0;
 }
 
 h3 {
@@ -41,7 +43,7 @@ h3 {
 .tooltip {
   position: absolute;
   top: 1.5em;
-  right: 3.5em;
+  right: 2.5em;
   background-color: #d6eeee;
   padding: 0.25em;
   width: 20em;
@@ -53,8 +55,12 @@ h3 {
   color: blue;
 }
 
+.body {
+  padding-top: 3em;
+}
+
 h1 {
-  margin: 0.2em 0;
+  margin: 0;
 }
 
 .table-container {
@@ -73,12 +79,12 @@ h1 {
 }
 
 .paginator-table {
-  margin-top: 0.2em;
   position: fixed;
   bottom: 0;
+  left: 0;
   background-color: #d6eeee;
   width: 100%;
-  left: 0;
+  height: 3em;
 }
 
 tr:nth-child(even) {
